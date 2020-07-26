@@ -7,13 +7,18 @@ CORREGIR ATAQUE DE ICE RAPIER - ATAQUE SERA COLOCADO EN 40 LISTO FALTA REEMPLAZA
 CORREGIR BUG DE HOLE AL SUR DE THAIS Position: [X: 1104] [Y: 1153] [Z: 7] - LISTO RECORDAR REEMPLAZAR EL MAPA
 CORREGIR SUPER RING OF REGENERATION - SE CONSUME EN EL BACKPACK - LISTO FALTA REEMPLAZAR CODIGO Y CAMBIAR EN LA LISTA DE LOTTERY EN ID DEL ANILLO 7697 POR 11253
 CORREGIR ASSASSIN STAR - QUE SE ACABE - LISTO FALTA REEMPLAZAR CODIGO
+AUMENTADO DAÑO DE ARMAS DE LOS ITEMS INICIALES - SPEAR 28, SWORD 30, CLUB 30, AXE 30 - LISTO
 CORREGIR TODAS LAS BOLTS, ARROWS Y SPEAR - NO SE ACABARAN LISTO FALTA REEMPLAZAR CODIGO
+BALANCE EN WEAPONS - VILE AXE, WARLORD SWORD, SAPPHIRE HAMMER, EARTH, SHIVER, FLAMING AND FLASH ARROW
+BALANCE EN WEAPONS - NORTHERN STAFF, SUNKEEPER ROD = 150 - 200
+REDUCIDO COSTO DE BLESS DE 50K A 20K
+
 
 
 
 RELACIONADO A SISTEMAS Y MAPA
-AGREGAR VIP SYSTEM - PENDIENTE
-AGREGAR ZONAS VIP - PENDIENTE
+AGREGAR VIP SYSTEM - LISTO
+AGREGAR ZONAS VIP - LISTO
 PUSH PLAYER CORREGIR - DE 3 SEGUNDOS A 2 SEGUNDOS DEFAULT - LISTO FALTA REEMPLEZAR CODIGO
 REVISAR ATAQUE DE MONSTERS EN CONFIG.LUA - LISTO
 AUMENTAR EFECTIVIDAD DE POCIONES 10 O 15%. - LISTO AUMENTADO BASE
@@ -25,9 +30,16 @@ AGREGAR STAMINA TRAINING REGENERATION - LISTO CADA 2 MINUTOS REGENERA 1 MINUTO D
 WHITE SKULL TIME REDUCIR - SERA REDUCIDO DE 10 MINUTOS A 5 MINUTOS. - LISTO
 
 RELACIONADO AL SHOP OFFER
-AGREGAR STAMINA POTION
-AGREGAR SUPER RING OF REGENERATION
-AGREGAR BUY VIP DAYS
+HEALING WAND CHANGE DESCRIPTION - ADD MANACOST PER HIT 200 - LISTO
+AGREGAR TELEPORT SCROLL - 5 PUNTOS - REMUEVE 1 AL USAR
+AGREGAR STAMINA POTION - 100 PUNTOS - LISTO
+AGREGAR SUPER RING OF REGENERATION - 10 PUNTOS - LISTO
+AGREGAR PREMIUM KEY - 120 - LISTO
+AGREGAR GOLDEN PREMIUM - 300 PUNTOS - LISTO
+BLACK SKULL CAMBIAR A 70 PUNTOS - LISTO
+PAIR OF SOFT BOOTS CAMBIAR A 80 PUNTOS - LISTO
+100 CRYSTAL COIN CAMBIAR A 20 PUNTOS - LISTO
+
 
 RELACIONADO CON LA WEB
 MODIFICADO PAGINA DE BUYPOINTS - LISTO FALTA REEMPLAZAR ARCHIVO
@@ -99,59 +111,9 @@ CONFIG.LUA
 	whiteSkullTime = 5 * 60 * 1000
 	rateLoot = 3
 	
-ITEMS.XML
-
-    <item id="2396" article="an" name="ice rapier">
-        <attribute key="description" value="A deadly but fragile weapon." />
-        <attribute key="weight" value="1500" />
-        <attribute key="attack" value="40" />
-        <attribute key="defense" value="1" />
-        <attribute key="weaponType" value="sword" />
-        <attribute key="elementIce" value="18" />
-    </item>
-    <item id="3965" article="a" name="hunting spear" plural="hunting spears">
-        <attribute key="weight" value="2200" />
-        <attribute key="attack" value="32" />
-        <attribute key="weaponType" value="distance" />
-        <attribute key="shootType" value="huntingspear" />
-        <attribute key="range" value="5" />
-    </item>
-    <item id="7368" article="an" name="assassin star" plural="assassin stars">
-        <attribute key="weight" value="200" />
-        <attribute key="attack" value="49" />
-        <attribute key="weaponType" value="distance" />
-        <attribute key="shootType" value="redstar" />
-		<attribute key="breakChance" value="9" />
-		<attribute key="ammoAction" value="moveback" />
-        <attribute key="range" value="5" />
-    </item>
-	<item id="7697" article="a" name="super ring of healing">		<!-- Valkirye INC -->
-		<attribute key="description" value="Only lottery winner have this!." />
-		<attribute key="weight" value="100" />
-		<attribute key="slotType" value="ring" />
-		<attribute key="duration" value="900" />
-		<attribute key="decayTo" value="0" />
-		<attribute key="healthGain" value="10" />
-		<attribute key="healthTicks" value="1000" />
-		<attribute key="manaGain" value="10" />
-		<attribute key="manaTicks" value="1000" />
-		<attribute key="transformDeEquipTo" value="11253" />
-		<attribute key="showduration" value="1" />
-		</item>
-	<item id="11253" article="a" name="super ring of healing">
-		<attribute key="weight" value="100" />
-		<attribute key="description" value="Only lottery winner have this!." />
-		<attribute key="slotType" value="ring" />
-		<attribute key="transformEquipTo" value="7697" />
-		<attribute key="stopduration" value="1" />
-		<attribute key="showduration" value="1" />
-	</item>
-	
-	
 MOVEMENTS.XML
 	<movevent type="StepIn" itemid="966" event="script" value="stamina_tile.lua" />
-    <movevent type="StepOut" itemid="966" event="script" value="stamina_tile.lua" />
-
+    	<movevent type="StepOut" itemid="966" event="script" value="stamina_tile.lua" />
 	<movevent type="Equip" itemid="11253" slot="ring" event="function" value="onEquipItem"/> <!--SUPER RING OF HEALING-->
 	<movevent type="Equip" itemid="7697" slot="ring" event="function" value="onEquipItem"/> <!--SUPER RING OF HEALING-->
 	<movevent type="DeEquip" itemid="7697" slot="ring" event="function" value="onDeEquipItem"/> <!--SUPER RING OF HEALING-->
@@ -166,8 +128,5 @@ POTIONS.LUA
 	[7589] = {empty = 7634, splash = 47, mana = {220, 350}, level = 50, vocations = {1, 2, 3, 5, 6, 7}, vocStr = "sorcerers, druids and paladins"}, -- strong mana potion
 	[7590] = {empty = 7635, splash = 47, mana = {350, 490}, level = 80, vocations = {1, 2, 5, 6}, vocStr = "sorcerers and druids"}, -- great mana potion
 	[8472] = {empty = 7635, splash = 43, health = {480, 650}, mana = {250, 400}, level = 80, vocations = {3, 7}, vocStr = "paladins"} -- great spirit potion
-
-
-RELACIONADO A LA PAGINA WEB
 
 
